@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_save_note"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.fallingapart.feras.anywherenotes.SaveNoteActivity"
+    tools:showIn="@layout/activity_save_note">
+
+        <RadioGroup
+            android:id="@+id/note_colors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingTop="8dp"
+            android:background="@color/colorPrimaryDark"
+            android:checkedButton="@+id/note_color_0">
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/note_color_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/note_color_0"/>
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/note_color_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/note_color_1"/>
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/note_color_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/note_color_2"/>
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/note_color_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/note_color_3"/>
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/note_color_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/note_color_4"/>
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/note_color_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/note_color_5"/>
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/note_color_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/note_color_6"/>
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/note_color_7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="@color/note_color_7"/>
+
+        </RadioGroup>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/title">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/txtNoteTitle"
+            android:inputType="text|textCapSentences"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:hint="@string/description">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/txtNoteDescription"
+            android:inputType="textMultiLine|textCapSentences"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+</LinearLayout>
