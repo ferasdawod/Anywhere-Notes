@@ -27,8 +27,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView _notesList;
-    private RecyclerView.LayoutManager _layoutManager;
     private NotesAdapter _notesAdapter;
     private ActionMode _actionMode;
 
@@ -62,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
 
         Intent intent = new Intent(this, SaveNoteActivity.class);
+        intent.putExtra(SaveNoteActivity.EXTRA_FROM_NOTIFICATION, true);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
@@ -87,8 +86,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView() {
-        _notesList = (RecyclerView)findViewById(R.id.notes_recyclerView);
-        _layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        RecyclerView _notesList = (RecyclerView) findViewById(R.id.notes_recyclerView);
+        RecyclerView.LayoutManager _layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         _notesList.setLayoutManager(_layoutManager);
 
         _notesAdapter = new NotesAdapter(new ArrayList<Note>(), this);
@@ -125,6 +124,9 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_about) {
             startActivity(new Intent(this, AboutActivity.class));
             return true;
+        } else if (id == R.id.action_settings) {
+            //startActivity(new Intent(this, SettingsActivity.class));
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -155,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
         if (_selectedNotes.size() == 0) {
             _actionMode.finish();
         } else {
-            _actionMode.setTitle(_selectedNotes.size() + " Notes Selected");
+            _actionMode.setTitle(_selectedNotes.size() + getString(R.string.notes_selected));
         }
     }
 
@@ -190,9 +192,9 @@ public class MainActivity extends AppCompatActivity {
 
             private void handleDeleteNotes() {
                 new AlertDialog.Builder(MainActivity.this)
-                        .setTitle("Delete Notes")
-                        .setMessage("Do you really want to delete " + _selectedNotes.size() + " Notes ?")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        .setTitle(R.string.delete_notes)
+                        .setMessage(R.string.delete_confirmation)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 for (NotesViewHolder selectedNote : _selectedNotes) {

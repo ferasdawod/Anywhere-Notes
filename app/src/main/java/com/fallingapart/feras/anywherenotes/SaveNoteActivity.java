@@ -18,6 +18,7 @@ import java.util.Date;
 public class SaveNoteActivity extends AppCompatActivity {
 
     public static final String EXTRA_NOTE_ID = "EXTRA_NOTE_ID";
+    public static final String EXTRA_FROM_NOTIFICATION = "EXTRA_FROM_NOTIFICATION";
 
     EditText txtTitle;
     EditText txtDescription;
@@ -33,7 +34,6 @@ public class SaveNoteActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -57,8 +57,19 @@ public class SaveNoteActivity extends AppCompatActivity {
                 txtTitle.setText(note.Name);
                 txtDescription.setText(note.Description);
                 noteColors.check(getRadioButtonIdFromColorId(note.ColorId));
+                getSupportActionBar().setTitle(R.string.edit_note);
+            } else {
+                getSupportActionBar().setTitle(R.string.new_note);
             }
+        } else {
+            getSupportActionBar().setTitle(R.string.new_note);
         }
+
+        //if (intent != null && intent.hasExtra(EXTRA_FROM_NOTIFICATION) && intent.getBooleanExtra(EXTRA_FROM_NOTIFICATION, false)) {
+        //    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        //} else {
+        //    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //}
     }
 
     private int getRadioButtonIdFromColorId(int colorId) {
@@ -94,7 +105,7 @@ public class SaveNoteActivity extends AppCompatActivity {
         String description = txtDescription.getText().toString();
 
         if (name.length() == 0) {
-            Toast.makeText(this, "Note title can't be empty!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.title_validation, Toast.LENGTH_LONG).show();
             return;
         }
 

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Anywhere Notes</string>
+    <string name="action_about">حول التطبيق</string>
+    <string name="action_settings">الإعدادات</string>
+    <string name="app_version">نسخة التطبيق 1.1.0</string>
+    <string name="click_to_add_note">اضغط لإضافة ملاحظة جديدة</string>
+    <string name="delete">حذف</string>
+    <string name="description">تفاصيل الملاحظة</string>
+    <string name="made_by_feras_dawod">تصميم وتنفيذ فراس داوود</string>
+    <string name="note_saved">تم حفظ الملاحظة</string>
+    <string name="notes_empty">لا يوجد ملاحظات بعد</string>
+    <string name="settings">الإعدادات</string>
+    <string name="title">العنوان</string>
+    <string name="title_activity_about">حول التطبيق</string>
+    <string name="title_activity_save_note">حفظ الملاحظة</string>
+    <string name="title_activity_settings">الإعدادات</string>
+    <string name="title_activity_show_note">الملاحظة</string>
+    <string name="delete_confirmation">هل تريد بالتأكيد حذف هذه الملاحظات</string>
+    <string name="delete_confirmation_s">هل تريد بالتأكيد حذف هذه الملاحظة؟</string>
+    <string name="delete_notes">حذف الملاحظات</string>
+    <string name="notes_selected">" ملاحظات محددة"</string>
+    <string name="title_validation">عنوان الملاحظة ضروري</string>
+    <string name="edit_note">تعديل الملاحظة</string>
+    <string name="new_note">ملاحظة جديدة</string>
+</resources>

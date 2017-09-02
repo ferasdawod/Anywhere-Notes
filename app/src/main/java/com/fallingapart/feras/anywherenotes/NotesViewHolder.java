@@ -10,15 +10,11 @@ import com.fallingapart.feras.anywherenotes.Models.Note;
 
 import java.text.SimpleDateFormat;
 
-/**
- * Created by ASUS on 2/9/2017.
- */
-
 public class NotesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
-    public TextView DateTextView;
-    public TextView TitleTextView;
-    public ViewGroup NoteRootColor;
+    private TextView DateTextView;
+    private TextView TitleTextView;
+    private ViewGroup NoteRootColor;
 
     private ImageView _checkedImageView;
     private Note _note;
@@ -27,9 +23,9 @@ public class NotesViewHolder extends RecyclerView.ViewHolder implements View.OnC
     private boolean _isSelected = false;
 
     public Note getNote() { return _note; }
-    public boolean getIsSelected() { return _isSelected; }
+    boolean getIsSelected() { return _isSelected; }
 
-    public NotesViewHolder(View view, MainActivity parentActivity) {
+    NotesViewHolder(View view, MainActivity parentActivity) {
         super(view);
         this._parentActivity = parentActivity;
 
@@ -43,7 +39,7 @@ public class NotesViewHolder extends RecyclerView.ViewHolder implements View.OnC
         v.setOnLongClickListener(this);
     }
 
-    public void bindNote(Note note) {
+    void bindNote(Note note) {
         _note = note;
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm a");
         this.NoteRootColor.setBackgroundColor(_parentActivity.getResources().getColor(note.ColorId));
@@ -71,11 +67,11 @@ public class NotesViewHolder extends RecyclerView.ViewHolder implements View.OnC
         return true;
     }
 
-    public void toggleSelection() {
+    void toggleSelection() {
         setSelected(!_isSelected);
     }
 
-    public void setSelected(boolean isSelected) {
+    void setSelected(boolean isSelected) {
         _isSelected = isSelected;
         if (_isSelected) {
             _checkedImageView.setVisibility(View.VISIBLE);

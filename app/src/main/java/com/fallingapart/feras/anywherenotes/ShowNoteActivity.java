@@ -2,6 +2,7 @@ package com.fallingapart.feras.anywherenotes;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -58,7 +59,6 @@ public class ShowNoteActivity extends AppCompatActivity {
                 fab.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Log.e("SHOW_NOTE", "Showing Note");
                         Intent editIntent = new Intent(ShowNoteActivity.this, SaveNoteActivity.class);
                         editIntent.putExtra(SaveNoteActivity.EXTRA_NOTE_ID, noteId);
                         startActivityForResult(editIntent, 0);
@@ -88,9 +88,9 @@ public class ShowNoteActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.menu_action_delete) {
             new AlertDialog.Builder(this)
-                    .setTitle("Delete Note")
-                    .setMessage("Do you really want to delete this note?")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    .setTitle(R.string.delete)
+                    .setMessage(R.string.delete_confirmation_s)
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Note note = Note.findById(Note.class, _noteId);
@@ -123,14 +123,17 @@ public class ShowNoteActivity extends AppCompatActivity {
 
         int noteColor = getResources().getColor(note.ColorId);
         _mainContent.setBackgroundColor(noteColor);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
         if (note.ColorId == R.color.note_color_0) {
             _toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimaryDark)));
             _lblTitle.setTextColor(getResources().getColor(android.R.color.primary_text_light));
             _lblDescription.setTextColor(getResources().getColor(android.R.color.primary_text_light));
             _lblDate.setTextColor(getResources().getColor(android.R.color.secondary_text_light));
         } else {
             _toolbar.setBackgroundColor(manipulateColor(noteColor, 0.7f));
+            fab.setBackgroundTintList(ColorStateList.valueOf(manipulateColor(noteColor, 0.7f)));
             _lblTitle.setTextColor(getResources().getColor(android.R.color.primary_text_dark));
             _lblDescription.setTextColor(getResources().getColor(android.R.color.primary_text_dark));
             _lblDate.setTextColor(getResources().getColor(android.R.color.primary_text_dark));
