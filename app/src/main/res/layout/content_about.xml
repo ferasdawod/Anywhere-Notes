@@ -17,7 +17,15 @@
         android:layout_marginTop="32dp"
         android:src="@mipmap/anywhere_logo"/>
 
-    <TextView
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="-16dp"
+        android:src="@mipmap/under_logo"/>
+
+    <!--<TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
@@ -40,7 +48,7 @@
         android:gravity="center"
         android:text="@string/feras_email"
         android:textSize="15sp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>-->
 
     <TextView
         android:layout_width="match_parent"

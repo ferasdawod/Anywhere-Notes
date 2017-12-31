@@ -3,6 +3,7 @@ package com.fallingapart.feras.anywherenotes;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -19,9 +20,13 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.fallingapart.feras.anywherenotes.Models.Note;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +59,21 @@ public class MainActivity extends AppCompatActivity {
 
         setupRecyclerView();
         showNotification();
+        showDebugDBAddressLogToast(this);
+        Logger.addLogAdapter(new AndroidLogAdapter());
+    }
+
+    private void showDebugDBAddressLogToast(Context context) {
+        if (BuildConfig.DEBUG) {
+            try {
+                Class<?> debugDB = Class.forName("com.amitshekhar.DebugDB");
+                Method getAddressLog = debugDB.getMethod("getAddressLog");
+                Object value = getAddressLog.invoke(null);
+                Toast.makeText(context, (String) value, Toast.LENGTH_LONG).show();
+            } catch (Exception ignore) {
+
+            }
+        }
     }
 
     private void showNotification() {

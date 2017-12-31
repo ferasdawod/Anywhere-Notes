@@ -28,6 +28,8 @@ public class AboutActivity extends AppCompatActivity {
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
     }
 
 }

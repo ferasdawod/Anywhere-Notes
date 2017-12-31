@@ -64,7 +64,6 @@ public class ShowNoteActivity extends AppCompatActivity {
                         startActivityForResult(editIntent, 0);
                     }
                 });
-
             } else {
                 // TODO show alert
             }
