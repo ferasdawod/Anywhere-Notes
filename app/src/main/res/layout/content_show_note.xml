@@ -18,7 +18,7 @@
         android:id="@+id/lblNoteTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/title"
+        tools:text="@string/title"
         android:textIsSelectable="true"
         android:textStyle="normal|bold"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:paddingStart="2dp"
         android:paddingEnd="2dp"
-        android:text="@string/demo_date_format"
+        tools:text="@string/demo_date_format"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"/>
 
     <TextView
@@ -37,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="@string/description"
+        tools:text="@string/description"
         android:textIsSelectable="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 

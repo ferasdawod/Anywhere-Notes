@@ -6,7 +6,7 @@
     <string name="title_activity_show_note">Note</string>
 
     <string name="title">Title</string>
-    <string name="description">Description</string>
+    <string name="description">Content</string>
     <string name="note_saved">Note Saved</string>
     <string name="demo_date_format" translatable="false">2017/9/2 2:30 PM</string>
     <string name="delete">Delete</string>
@@ -22,7 +22,7 @@
     <string name="notes_selected">" Notes Selected"</string>
     <string name="delete_notes">Delete Notes</string>
     <string name="delete_confirmation">Do you really want to delete these notes?</string>
-    <string name="title_validation">Note title can\'t be empty!</string>
+    <string name="title_validation">title can\'t be empty!</string>
     <string name="delete_confirmation_s">Do you really want to delete this note?</string>
     <string name="edit_note">Edit Note</string>
     <string name="new_note">New Note</string>

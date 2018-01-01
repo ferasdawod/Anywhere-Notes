@@ -10,6 +10,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -117,7 +118,7 @@ public class ShowNoteActivity extends AppCompatActivity {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm a");
 
         _lblTitle.setText(note.Name);
-        _lblDescription.setText(note.Description);
+        _lblDescription.setText(Html.fromHtml(note.Description));
         _lblDate.setText(dateFormat.format(note.UpdatedAt));
 
         int noteColor = getResources().getColor(note.ColorId);
