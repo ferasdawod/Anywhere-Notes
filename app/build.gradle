@@ -35,6 +35,8 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
 
+    compile 'jp.wasabeef:richeditor-android:1.2.2'
+
     debugCompile 'com.amitshekhar.android:debug-db:1.0.1'
     debugCompile 'com.orhanobut:logger:2.1.1'
     compile 'com.getkeepsafe.taptargetview:taptargetview:1.9.1'
