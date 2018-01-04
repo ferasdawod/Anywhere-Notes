@@ -23,8 +23,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.fallingapart.feras.anywherenotes.Models.Note;
-import com.orhanobut.logger.AndroidLogAdapter;
-import com.orhanobut.logger.Logger;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -59,8 +57,9 @@ public class MainActivity extends AppCompatActivity {
 
         setupRecyclerView();
         showNotification();
-        showDebugDBAddressLogToast(this);
-        Logger.addLogAdapter(new AndroidLogAdapter());
+        if (BuildConfig.DEBUG) {
+            showDebugDBAddressLogToast(this);
+        }
     }
 
     private void showDebugDBAddressLogToast(Context context) {

@@ -93,7 +93,6 @@
 
     <LinearLayout
         android:id="@+id/editor_controls"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorAccent">
@@ -105,7 +104,6 @@
                 android:background="?android:selectableItemBackground"
                 android:src="@drawable/ic_editor_undo"
                 android:padding="4dp"
-                android:layout_alignParentStart="true"
                 android:tint="@android:color/white"/>
             <ImageButton
                 android:id="@+id/btn_editor_redo"
@@ -114,10 +112,10 @@
                 android:background="?android:selectableItemBackground"
                 android:src="@drawable/ic_editor_redo"
                 android:padding="4dp"
-                android:layout_toEndOf="@id/btn_editor_undo"
                 android:tint="@android:color/white"/>
 
         <HorizontalScrollView
+            android:id="@+id/editor_controls_scroller"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1">
@@ -125,7 +123,88 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/btn_editor_redo">
+                android:paddingStart="4dp">
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@android:color/white"/>
+
+                <ImageButton
+                    android:id="@+id/btn_editor_heading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:selectableItemBackground"
+                    android:src="@drawable/ic_editor_heading"
+                    android:padding="4dp"
+                    android:tint="@android:color/white"/>
+
+                <LinearLayout
+                    android:id="@+id/editor_controls_headings"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorPrimary">
+
+                    <ImageButton
+                        android:id="@+id/btn_editor_heading_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?android:selectableItemBackground"
+                        android:src="@drawable/ic_editor_heading_1"
+                        android:padding="4dp"
+                        android:tint="@android:color/white"/>
+                    <ImageButton
+                        android:id="@+id/btn_editor_heading_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?android:selectableItemBackground"
+                        android:src="@drawable/ic_editor_heading_2"
+                        android:padding="4dp"
+                        android:tint="@android:color/white"/>
+                    <ImageButton
+                        android:id="@+id/btn_editor_heading_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?android:selectableItemBackground"
+                        android:src="@drawable/ic_editor_heading_3"
+                        android:padding="4dp"
+                        android:tint="@android:color/white"/>
+                    <ImageButton
+                        android:id="@+id/btn_editor_heading_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?android:selectableItemBackground"
+                        android:src="@drawable/ic_editor_heading_4"
+                        android:padding="4dp"
+                        android:tint="@android:color/white"/>
+                    <ImageButton
+                        android:id="@+id/btn_editor_heading_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?android:selectableItemBackground"
+                        android:src="@drawable/ic_editor_heading_5"
+                        android:padding="4dp"
+                        android:tint="@android:color/white"/>
+                    <ImageButton
+                        android:id="@+id/btn_editor_heading_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?android:selectableItemBackground"
+                        android:src="@drawable/ic_editor_heading_6"
+                        android:padding="4dp"
+                        android:tint="@android:color/white"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@android:color/white"/>
 
                 <ImageButton
                     android:id="@+id/btn_editor_bold"
@@ -141,6 +220,129 @@
                     android:layout_height="wrap_content"
                     android:background="?android:selectableItemBackground"
                     android:src="@drawable/ic_editor_italic"
+                    android:padding="4dp"
+                    android:tint="@android:color/white"/>
+                <ImageButton
+                    android:id="@+id/btn_editor_underline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:selectableItemBackground"
+                    android:src="@drawable/ic_editor_underline"
+                    android:padding="4dp"
+                    android:tint="@android:color/white"/>
+                <ImageButton
+                    android:id="@+id/btn_editor_strikethrough"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:selectableItemBackground"
+                    android:src="@drawable/ic_editor_strikethrough"
+                    android:padding="4dp"
+                    android:tint="@android:color/white"/>
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@android:color/white"/>
+
+                <ImageButton
+                    android:id="@+id/btn_editor_superscript"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:selectableItemBackground"
+                    android:src="@drawable/ic_editor_superscript"
+                    android:padding="4dp"
+                    android:tint="@android:color/white"/>
+                <ImageButton
+                    android:id="@+id/btn_editor_subscript"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:selectableItemBackground"
+                    android:src="@drawable/ic_editor_subscript"
+                    android:padding="4dp"
+                    android:tint="@android:color/white"/>
+
+                <ImageButton
+                    android:id="@+id/btn_editor_quote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:selectableItemBackground"
+                    android:src="@drawable/ic_editor_quote"
+                    android:padding="4dp"
+                    android:tint="@android:color/white"/>
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@android:color/white"/>
+
+                <ImageButton
+                    android:id="@+id/btn_editor_align_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:selectableItemBackground"
+                    android:src="@drawable/ic_editor_align_left"
+                    android:padding="4dp"
+                    android:tint="@android:color/white"/>
+                <ImageButton
+                    android:id="@+id/btn_editor_align_center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:selectableItemBackground"
+                    android:src="@drawable/ic_editor_align_center"
+                    android:padding="4dp"
+                    android:tint="@android:color/white"/>
+                <ImageButton
+                    android:id="@+id/btn_editor_align_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:selectableItemBackground"
+                    android:src="@drawable/ic_editor_align_right"
+                    android:padding="4dp"
+                    android:tint="@android:color/white"/>
+
+                <ImageButton
+                    android:id="@+id/btn_editor_outdent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:selectableItemBackground"
+                    android:src="@drawable/ic_editor_outdent"
+                    android:padding="4dp"
+                    android:tint="@android:color/white"/>
+                <ImageButton
+                    android:id="@+id/btn_editor_indent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:selectableItemBackground"
+                    android:src="@drawable/ic_editor_indent"
+                    android:padding="4dp"
+                    android:tint="@android:color/white"/>
+
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@android:color/white"/>
+
+                <ImageButton
+                    android:id="@+id/btn_editor_bullets"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:selectableItemBackground"
+                    android:src="@drawable/ic_editor_bullets"
+                    android:padding="4dp"
+                    android:tint="@android:color/white"/>
+                <ImageButton
+                    android:id="@+id/btn_editor_numbers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:selectableItemBackground"
+                    android:src="@drawable/ic_editor_numbers"
                     android:padding="4dp"
                     android:tint="@android:color/white"/>
 

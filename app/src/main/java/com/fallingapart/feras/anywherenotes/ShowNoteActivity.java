@@ -1,9 +1,11 @@
 package com.fallingapart.feras.anywherenotes;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,6 +18,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import com.fallingapart.feras.anywherenotes.Models.Note;
@@ -27,7 +32,6 @@ public class ShowNoteActivity extends AppCompatActivity {
     public static final String EXTRA_NOTE_ID = "EXTRA_NOTE_ID";
 
     private TextView _lblTitle;
-    private TextView _lblDescription;
     private TextView _lblDate;
 
     private ViewGroup _mainContent;
@@ -44,7 +48,6 @@ public class ShowNoteActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         _lblTitle = (TextView)findViewById(R.id.lblNoteTitle);
-        _lblDescription = (TextView)findViewById(R.id.lblNoteDescription);
         _lblDate = (TextView)findViewById(R.id.lblNoteDate);
         _mainContent = (ViewGroup)findViewById(R.id.content_show_note);
 
@@ -114,12 +117,16 @@ public class ShowNoteActivity extends AppCompatActivity {
         bindNote(note);
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private void bindNote(Note note) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm a");
 
         _lblTitle.setText(note.Name);
-        _lblDescription.setText(Html.fromHtml(note.Description));
         _lblDate.setText(dateFormat.format(note.UpdatedAt));
+
+        WebView webView = (WebView)findViewById(R.id.lblNoteContents);
+        webView.setBackgroundColor(Color.TRANSPARENT);
+        webView.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
 
         int noteColor = getResources().getColor(note.ColorId);
         _mainContent.setBackgroundColor(noteColor);
@@ -129,14 +136,18 @@ public class ShowNoteActivity extends AppCompatActivity {
             _toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
             fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimaryDark)));
             _lblTitle.setTextColor(getResources().getColor(android.R.color.primary_text_light));
-            _lblDescription.setTextColor(getResources().getColor(android.R.color.primary_text_light));
             _lblDate.setTextColor(getResources().getColor(android.R.color.secondary_text_light));
+
+            String text = "<font color=\"#000\">" + note.Description + "</font>";
+            webView.loadDataWithBaseURL(null, text, "text/html", "utf-8", null);
         } else {
             _toolbar.setBackgroundColor(manipulateColor(noteColor, 0.7f));
             fab.setBackgroundTintList(ColorStateList.valueOf(manipulateColor(noteColor, 0.7f)));
             _lblTitle.setTextColor(getResources().getColor(android.R.color.primary_text_dark));
-            _lblDescription.setTextColor(getResources().getColor(android.R.color.primary_text_dark));
             _lblDate.setTextColor(getResources().getColor(android.R.color.primary_text_dark));
+
+            String text = "<font color=\"#fff\">" + note.Description + "</font>";
+            webView.loadDataWithBaseURL(null, text, "text/html", "utf-8", null);
         }
     }
 

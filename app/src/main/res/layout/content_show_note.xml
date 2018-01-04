@@ -32,13 +32,12 @@
         tools:text="@string/demo_date_format"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"/>
 
-    <TextView
-        android:id="@+id/lblNoteDescription"
+    <WebView
+        android:id="@+id/lblNoteContents"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        tools:text="@string/description"
-        android:textIsSelectable="true"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        android:layout_height="wrap_content">
+
+    </WebView>
 
 </LinearLayout>

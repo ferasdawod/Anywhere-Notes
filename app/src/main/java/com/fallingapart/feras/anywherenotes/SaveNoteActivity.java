@@ -12,7 +12,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.Transformation;
 import android.widget.EditText;
+import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -33,6 +37,7 @@ public class SaveNoteActivity extends AppCompatActivity {
     RichEditor richEditor;
 
     private long _noteId = 0;
+    private boolean headingPanelExpanded = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +89,7 @@ public class SaveNoteActivity extends AppCompatActivity {
     private void setupRichEditor() {
         richEditor.setBackgroundColor(getResources().getColor(android.R.color.transparent));
         richEditor.setPlaceholder("Note Content...");
+        findViewById(R.id.editor_controls).setVisibility(ViewGroup.GONE);
         richEditor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -95,6 +101,7 @@ public class SaveNoteActivity extends AppCompatActivity {
             }
         });
 
+        // undo redo
         findViewById(R.id.btn_editor_undo).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,6 +114,8 @@ public class SaveNoteActivity extends AppCompatActivity {
                 richEditor.redo();
             }
         });
+
+        // general text
         findViewById(R.id.btn_editor_bold).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,6 +128,203 @@ public class SaveNoteActivity extends AppCompatActivity {
                 richEditor.setItalic();
             }
         });
+        findViewById(R.id.btn_editor_underline).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                richEditor.setUnderline();
+            }
+        });
+        findViewById(R.id.btn_editor_strikethrough).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                richEditor.setStrikeThrough();
+            }
+        });
+
+        // alignment
+        findViewById(R.id.btn_editor_align_left).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                richEditor.setAlignLeft();
+            }
+        });
+        findViewById(R.id.btn_editor_align_center).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                richEditor.setAlignCenter();
+            }
+        });
+        findViewById(R.id.btn_editor_align_right).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                richEditor.setAlignRight();
+            }
+        });
+        findViewById(R.id.btn_editor_indent).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                richEditor.setIndent();
+            }
+        });
+        findViewById(R.id.btn_editor_outdent).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                richEditor.setOutdent();
+            }
+        });
+
+        // headings
+        findViewById(R.id.editor_controls_headings).setVisibility(View.GONE);
+        findViewById(R.id.btn_editor_heading).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleHeadingsPanel();
+            }
+        });
+
+        findViewById(R.id.btn_editor_heading_1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                richEditor.setHeading(1);
+                toggleHeadingsPanel();
+            }
+        });
+        findViewById(R.id.btn_editor_heading_2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                richEditor.setHeading(2);
+                toggleHeadingsPanel();
+            }
+        });
+        findViewById(R.id.btn_editor_heading_3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                richEditor.setHeading(3);
+                toggleHeadingsPanel();
+            }
+        });
+        findViewById(R.id.btn_editor_heading_4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                richEditor.setHeading(4);
+                toggleHeadingsPanel();
+            }
+        });
+        findViewById(R.id.btn_editor_heading_5).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                richEditor.setHeading(5);
+                toggleHeadingsPanel();
+            }
+        });
+        findViewById(R.id.btn_editor_heading_6).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                richEditor.setHeading(6);
+                toggleHeadingsPanel();
+            }
+        });
+
+        // bullets and lists
+        findViewById(R.id.btn_editor_bullets).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                richEditor.setBullets();
+            }
+        });
+        findViewById(R.id.btn_editor_numbers).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                richEditor.setNumbers();
+            }
+        });
+
+        // misc
+
+        findViewById(R.id.btn_editor_superscript).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                richEditor.setSuperscript();
+            }
+        });
+        findViewById(R.id.btn_editor_subscript).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                richEditor.setSubscript();
+            }
+        });
+        findViewById(R.id.btn_editor_quote).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                richEditor.setBlockquote();
+            }
+        });
+    }
+
+    private void toggleHeadingsPanel() {
+        View headings = findViewById(R.id.editor_controls_headings);
+        if (headingPanelExpanded) {
+            collapse(headings);
+            headingPanelExpanded = !headingPanelExpanded;
+        } else {
+            ((HorizontalScrollView)findViewById(R.id.editor_controls_scroller)).smoothScrollTo(0,0);
+            expand(headings);
+            headingPanelExpanded = !headingPanelExpanded;
+        }
+    }
+
+    public static void expand(final View v) {
+        v.measure(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        final int targetWidth = v.getMeasuredWidth();
+
+        // Older versions of android (pre API 21) cancel animations for views with a height of 0.
+        v.getLayoutParams().width = 1;
+        v.setVisibility(View.VISIBLE);
+        Animation a = new Animation()
+        {
+            @Override
+            protected void applyTransformation(float interpolatedTime, Transformation t) {
+                v.getLayoutParams().width = interpolatedTime == 1
+                        ? LinearLayout.LayoutParams.WRAP_CONTENT
+                        : (int)(targetWidth * interpolatedTime);
+                v.requestLayout();
+            }
+
+            @Override
+            public boolean willChangeBounds() {
+                return true;
+            }
+        };
+
+        // 1dp/ms
+        a.setDuration((int)(targetWidth / v.getContext().getResources().getDisplayMetrics().density));
+        v.startAnimation(a);
+    }
+
+    public static void collapse(final View v) {
+        final int initialWidth = v.getMeasuredWidth();
+
+        Animation a = new Animation()
+        {
+            @Override
+            protected void applyTransformation(float interpolatedTime, Transformation t) {
+                if(interpolatedTime == 1){
+                    v.setVisibility(View.GONE);
+                }else{
+                    v.getLayoutParams().width = initialWidth - (int)(initialWidth * interpolatedTime);
+                    v.requestLayout();
+                }
+            }
+
+            @Override
+            public boolean willChangeBounds() {
+                return true;
+            }
+        };
+
+        // 1dp/ms
+        a.setDuration((int)(initialWidth / v.getContext().getResources().getDisplayMetrics().density));
+        v.startAnimation(a);
     }
 
     @Override
